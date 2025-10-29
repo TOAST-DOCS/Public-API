@@ -1,5 +1,6 @@
 # Appkey
 **Public API > 인증 방식 > Appkey**
+
 Appkey는 NHN Cloud의 각 서비스별로 발급되는 고유 인증 키로 API 요청 시 서비스 식별과 유효성 검증에 사용됩니다. 인증을 위한 별도의 사용자 등록, 토큰 요청 또는 갱신 절차 없이 API 요청 시 Appkey만 포함하면 되므로 인증 과정이 비교적 간단합니다.
 API 요청 시 Appkey는 path 파라미터 또는 HTTP 헤더에 포함되며, 서비스에 따라 사용 방식이 달라질 수 있습니다. API 요청 시 사용하는 path 형식 또는 HTTP 헤더 필드 명칭은 해당 서비스의 API 가이드를 참고하세요.
 
@@ -30,3 +31,4 @@ Appkey는 서비스별로 발급되므로 NHN Cloud 콘솔의 각 서비스 화�
 !!! danger "주의"
     Appkey가 유출되었거나 유출이 의심되는 경우 [고객 센터 > 1:1 문의](https://www.nhncloud.com/kr/support/inquiry)에서 유형을 **서비스/기타**로 선택하여 Appkey 재발급을 신청하세요.
     
+

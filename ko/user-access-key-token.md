@@ -239,7 +239,7 @@ User Access Key 토큰은 HTTP 헤더 형식을 따릅니다. API 호출 시 아
 사용자가  HTTP 헤더에 키를 담아 서버에 요청을 보내면 서버가 토큰의 유효성을 확인한 뒤 요청을 승인하거나 거부합니다.
 프레임워크 API 호출 시 호출자 인증을 위해 `x-nhn-authorization` 헤더에 토큰을 담아 요청합니다.
 
-### 예시
+* 예시
 ```shell
 curl -X GET "https://core.api.nhncloudservice.com/v1.0/organizations" -H "x-nhn-authorization: Bearer {token}"
 ```
@@ -248,3 +248,4 @@ curl -X GET "https://core.api.nhncloudservice.com/v1.0/organizations" -H "x-nhn-
     User Access Key 토큰은 오류 발생 시 [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-5.2)와 동일한 오류 코드를 반환합니다. 토큰 요청 API 호출, 토큰 만료 요청 API 호출, 토큰 사용 등의 상황에 반환될 수 있는 오류 코드는 [프레임워크 API 가이드](https://docs.nhncloud.com/ko/nhncloud/ko/public-api/framework-api/#_281)에서 확인할 수 있습니다.
 
     
+

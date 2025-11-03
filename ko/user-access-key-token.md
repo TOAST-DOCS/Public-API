@@ -21,7 +21,7 @@ User Access Key 토큰 발급 및 API 호출은 다음과 같은 흐름으로 �
 !!! tip "알아두기"
     토큰의 유효 기간은 프레임워크 API를 이용해 변경할 수 있습니다. 변경 시 다음에 발급되는 토큰부터 해당 만료 시간이 반영됩니다.
 
-## 토큰 발급 요청
+## 토큰 발급 요청하기기
 ### 사전 작업
 
 User Access Key 토큰을 발급하려면 먼저 User Access Key ID와 Secret Access Key를 먼저 발급해야 합니다. NHN Cloud 콘솔의 **API 보안 설정** 메뉴에서 User Access Key별 토큰 정보를 확인하고 관리할 수 있습니다.
@@ -173,7 +173,7 @@ public class Oauth2Config {
 }
 ```
 
-## 토큰 만료 요청
+## 토큰 만료 요청하기
 > `POST /oauth2/token/revoke`
 
 * 요청
@@ -229,7 +229,7 @@ public void revokeToken(String userAccessKeyID, String secretAccessKey, String t
 }
 ```
 
-## 토큰 사용
+## 토큰 사용하기
 User Access Key 토큰은 HTTP 헤더 형식을 따릅니다. API 호출 시 아래와 같이 요청 헤더에 키를 포함하여 전달합니다.
 * HTTP 헤더 형식 예시
   ```
@@ -248,4 +248,5 @@ curl -X GET "https://core.api.nhncloudservice.com/v1.0/organizations" -H "x-nhn-
     User Access Key 토큰은 오류 발생 시 [The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749#section-5.2)와 동일한 오류 코드를 반환합니다. 토큰 요청 API 호출, 토큰 만료 요청 API 호출, 토큰 사용 등의 상황에 반환될 수 있는 오류 코드는 [프레임워크 API 가이드](https://docs.nhncloud.com/ko/nhncloud/ko/public-api/framework-api/#_281)에서 확인할 수 있습니다.
 
     
+
 

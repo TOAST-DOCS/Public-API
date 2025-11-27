@@ -4,39 +4,40 @@
 
 IaaS 토큰은 NHN Cloud의 OpenStack 기반 인프라 서비스(IaaS)에서 사용하는 인증 토큰입니다. Keystone 인증 서버를 통해 발급되며 Compute, Block Storage, Network 등 인프라 리소스 제어 API를 호출할 때 사용합니다.
 
-## IaaS 토큰 발급하기
-### 공통 준비 사항
-#### API 엔드포인트 확인
+## 사전 작업
+### API 엔드포인트 확인
 
 NHN Cloud 기본 인프라 서비스 API는 타입과 리전별로 엔드포인트가 분리되어 있습니다. 단, Identity API는 모든 리전에서 동일한 엔드포인트를 사용합니다.
 
 | 타입         | 리전                                                 | 엔드포인트                                             |
 | ------------ | ---------------------------------------------------- | ------------------------------------------------------- |
 | identity     | 모든 리전                                            | https://api-identity-infrastructure.nhncloudservice.com |
-| compute      | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-instance-infrastructure.nhncloudservice.com<br>https://kr2-api-instance-infrastructure.nhncloudservice.com<br>https://jp1-api-instance-infrastructure.nhncloudservice.com |
-| network      | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-network-infrastructure.nhncloudservice.com<br>https://kr2-api-network-infrastructure.nhncloudservice.com<br>https://jp1-api-network-infrastructure.nhncloudservice.com |
-| image        | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-image-infrastructure.nhncloudservice.com<br>https://kr2-api-image-infrastructure.nhncloudservice.com<br>https://jp1-api-image-infrastructure.nhncloudservice.com |
-| volumev2     | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-block-storage-infrastructure.nhncloudservice.com<br>https://kr2-api-block-storage-infrastructure.nhncloudservice.com<br>https://jp1-api-block-storage-infrastructure.nhncloudservice.com |
+| compute      | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br>미국(캘리포니아) 리전 | https://kr1-api-instance-infrastructure.nhncloudservice.com<br>https://kr2-api-instance-infrastructure.nhncloudservice.com<br>https://jp1-api-instance-infrastructure.nhncloudservice.com<br>https://us1-api-instance-infrastructure.nhncloudservice.com |
+| network      | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br>미국(캘리포니아) 리전 | https://kr1-api-network-infrastructure.nhncloudservice.com<br>https://kr2-api-network-infrastructure.nhncloudservice.com<br>https://jp1-api-network-infrastructure.nhncloudservice.com<br>https://us1-api-network-infrastructure.nhncloudservice.com |
+| image        | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br>미국(캘리포니아) 리전 | https://kr1-api-image-infrastructure.nhncloudservice.com<br>https://kr2-api-image-infrastructure.nhncloudservice.com<br>https://jp1-api-image-infrastructure.nhncloudservice.com<br>https://us1-api-image-infrastructure.nhncloudservice.com |
+| volumev2     | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br> | https://kr1-api-block-storage-infrastructure.nhncloudservice.com<br>https://kr2-api-block-storage-infrastructure.nhncloudservice.com<br>https://jp1-api-block-storage-infrastructure.nhncloudservice.com<br>https://us1-api-block-storage-infrastructure.nhncloudservice.com |
 | nasv1        | 한국(판교) 리전<br>한국(평촌) 리전                    | https://kr1-api-nas-infrastructure.nhncloudservice.com<br>https://kr2-api-nas-infrastructure.nhncloudservice.com |
-| object-store | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-object-storage.nhncloudservice.com<br>https://kr2-api-object-storage.nhncloudservice.com<br>https://jp1-api-object-storage.nhncloudservice.com |
-| key-manager  | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전 | https://kr1-api-key-manager-infrastructure.nhncloudservice.com<br>https://kr2-api-key-manager-infrastructure.nhncloudservice.com<br>https://jp1-api-key-manager-infrastructure.nhncloudservice.com |
+| object-store | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br> | https://kr1-api-object-storage.nhncloudservice.com<br>https://kr2-api-object-storage.nhncloudservice.com<br>https://jp1-api-object-storage.nhncloudservice.com<br>https://us1-api-object-storage.nhncloudservice.com |
+| key-manager  | 한국(판교) 리전<br>한국(평촌) 리전<br>일본(도쿄) 리전<br> | https://kr1-api-key-manager-infrastructure.nhncloudservice.com<br>https://kr2-api-key-manager-infrastructure.nhncloudservice.com<br>https://jp1-api-key-manager-infrastructure.nhncloudservice.com<br>https://us1-api-key-manager-infrastructure.nhncloudservice.com |
 
-#### 테넌트 ID 확인
+### 테넌트 ID 확인
 
-API 요청에 포함되는 테넌트 ID는 **Compute > Instance > 관리** 페이지의 **API 엔드포인트 설정**에서 확인합니다.
+API 요청에 포함되는 테넌트 ID는 **Compute > Instance** 페이지의 **API 엔드포인트 설정**에서 확인합니다.
 
-#### API 비밀번호 설정
+### API 비밀번호 설정
 
 NHN Cloud 기본 인프라 서비스 API를 사용하려면 NHN Cloud 계정 비밀번호와는 별개로 API 비밀번호를 설정해야 합니다. API 비밀번호는 계정별로 생성됩니다. 한 프로젝트에서 설정된 비밀번호는 사용자가 속한 모든 프로젝트에서 사용할 수 있습니다.
 
-1. **Compute > Instance > 관리** 페이지의 **API 엔드포인트 설정**을 클릭합니다.
+1. **Compute > Instance** 페이지의 **API 엔드포인트 설정**을 클릭합니다.
+[스크린샷 추가]
 2. **API 엔드포인트 설정** 모달 창 아래의 **API 비밀번호 설정**에 원하는 API 비밀번호를 지정합니다.
+[스크린샷 추가]
 
 !!! tip "알아두기"
     * 현재 사용 중인 비밀번호로는 변경할 수 없습니다.
     * API 비밀번호 변경 시 기존 인증 토큰은 더 이상 사용할 수 없으며, 재발급이 필요합니다.
 
-### IaaS 토큰 발급
+## IaaS 토큰 발급 요청하기
 토큰 발급은 `identity` 타입 엔드포인트를 이용합니다. `identity` 서비스 엔드포인트는 리전에 관계없이 `https://api-identity-infrastructure.nhncloudservice.com`입니다.<br>
 API를 호출할 때 필요한 토큰을 발급합니다. NHN Cloud에서는 프로젝트 한정 토큰(project-scoped token)을 사용합니다.
 
@@ -48,7 +49,7 @@ API를 호출할 때 필요한 토큰을 발급합니다. NHN Cloud에서는 프
 POST /v2.0/tokens
 ```
 
-#### 요청
+### 요청
 
 | 이름                | 구분 | 타입  | 필수 | 설명                                       |
 | ------------------- | ---- | ------ | ---- | ------------------------------------------ |
@@ -76,7 +77,7 @@ POST /v2.0/tokens
 </p>
 </details>
 
-#### 응답
+### 응답
 
 | 이름 | 종류 | 속성 | 설명 |
 |---|---|---|---|
@@ -225,9 +226,9 @@ POST /v2.0/tokens
 </details>
 
 
-## API 호출하기
+## IaaS 토큰 사용하기
 
-IaaS 토큰은 HTTP 헤더 형식을 따릅니다. API 호출 시 아래와 같이 요청 헤더에 키를 포함하여 전달합니다.
+IaaS 토큰은 HTTP 요청 헤더에 포함해 전달합니다. API 호출 시 아래 예시와 같이 요청 헤더에 IaaS 토큰을 설정해 호출하세요.
 
 * HTTP 헤더 형식 예시
 
@@ -235,7 +236,7 @@ IaaS 토큰은 HTTP 헤더 형식을 따릅니다. API 호출 시 아래와 같�
 X-Auth-Token: {IaaS Token}
 ```
 
-사용자가 HTTP 헤더에 키를 담아 서버에 요청을 보내면 서버가 토큰의 유효성을 확인한 뒤 요청을 승인하거나 거부합니다.
+사용자가 HTTP 헤더에 토큰을 담아 서버에 요청을 보내면 서버가 토큰의 유효성을 확인한 뒤 요청을 승인하거나 거부합니다.
 
 
 

@@ -1,11 +1,11 @@
-# Public API별 인증 방식
+# 인증 방식 지원 현황
 
-**Public API > Public API별 인증 방식**
+**Public API > 인증 방식 지원 현황**
 
 NHN Cloud의 Public API는 인증을 위해 User Access Key 토큰, IaaS 토큰, User Access Key, Appkey, 프로젝트 통합 Appkey를 지원합니다.
-프레임워크 API, 파트너 관리 API, 각 서비스마다 지원하는 인증 방식이 다르며, 일부 인증 방식은 특정 서비스에서만 지원합니다.
+Public API마다 지원하는 인증 방식이 다르며, 일부 인증 방식은 특정 API에서만 지원합니다.
 
-## 프레임워크 API 및 파트너 관리 인증 방식 확인하기
+## 프레임워크 API 및 파트너 관리 API 인증 방식 확인하기
 
 프레임워크 API 및 파트너 관리 API는 인증을 위해 User Access Key 토큰을 사용합니다. User Access Key 토큰 발급 및 API 호출에 대한 자세한 내용은 [User Access Key 토큰](link 입력)을 참고하세요.
 프레임워크 API 및 파트너 관리 API 사용에 대한 자세한 내용은 각각 [프레임워크 API](https://docs.nhncloud.com/ko/nhncloud/ko/public-api/framework-api/)와 [파트너 관리 API](https://docs.nhncloud.com/ko/nhncloud/ko/public-api/partner-api/)를 참고하세요.
